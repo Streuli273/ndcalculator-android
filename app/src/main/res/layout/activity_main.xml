@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:tools="http://schemas.android.com/tools"
+			  android:layout_width="match_parent"
+			  android:layout_height="match_parent"
+			  android:paddingLeft="0dp"
+			  android:paddingRight="0dp"
+			  android:paddingBottom="0dp"
+			  tools:context=".MainActivity"
+			  android:orientation="vertical"
+			  android:weightSum="1"
+			  android:paddingTop="0dp">
+
+	<LinearLayout
+		android:id="@+id/linear_top"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:focusable="false"
+		android:clickable="false"
+		android:background="#ffffff"
+		android:weightSum="2">
+
+		<TextView
+			android:text="@string/description"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingLeft="@dimen/activity_vertical_margin"
+			android:paddingRight="@dimen/activity_vertical_margin"
+			android:paddingBottom="@dimen/activity_horizontal_margin"
+			android:paddingTop="@dimen/activity_horizontal_margin"/>
+
+		<Space
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"/>
+
+		<LinearLayout
+			android:id="@+id/linear_text"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="120dp"
+			android:paddingRight="@dimen/activity_vertical_margin"
+			android:paddingBottom="@dimen/activity_horizontal_margin"
+			android:paddingTop="@dimen/activity_horizontal_margin"
+			android:paddingLeft="@dimen/activity_vertical_margin"
+			android:nestedScrollingEnabled="false">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="60dp"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:id="@+id/text_shutter_short"
+				android:layout_gravity="center_horizontal"
+				android:textSize="50dp"
+				android:textIsSelectable="false"
+				android:gravity="center"
+				tools:ignore="SpUsage"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="30dp"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:id="@+id/text_shutter_long"
+				android:layout_gravity="center_horizontal"
+				android:textSize="20dp"
+				android:textIsSelectable="false"
+				android:gravity="center"
+				tools:ignore="SpUsage"/>
+		</LinearLayout>
+
+		<Space
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="2.3dp"
+		android:background="#536DFE"
+		android:id="@+id/linear_shadow">
+
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="@drawable/drop_shadow"
+			android:id="@+id/drop_shadow"/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/linear_bottom"
+		android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:paddingLeft="@dimen/activity_vertical_margin"
+		android:paddingRight="@dimen/activity_vertical_margin"
+		android:paddingBottom="@dimen/activity_horizontal_margin"
+		android:background="#536DFE"
+		android:paddingTop="@dimen/activity_horizontal_margin"
+		android:layout_gravity="bottom"
+		android:gravity="bottom">
+
+		<NumberPicker
+			android:id="@+id/picker_nd"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:descendantFocusability="blocksDescendants"
+			android:theme="@style/Theme.NumberPicker"/>
+
+		<Space
+			android:layout_width="@dimen/activity_vertical_margin"
+			android:layout_height="match_parent"/>
+
+		<NumberPicker
+			android:id="@+id/picker_shutter"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:descendantFocusability="blocksDescendants"
+			android:theme="@style/Theme.NumberPicker"/>
+
+	</LinearLayout>
+
+</LinearLayout>
