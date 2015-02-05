@@ -14,6 +14,7 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends ActionBarActivity {
 
+	// shutter speeds String array
 	String[] shutters = {
 			"1/8000",
 			"1/4000",
@@ -53,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
 			"30\"",
 	};
 
+	// ND densitys String array
 	String[] densitys = {
 			"1 Stop",
 			"2 Stops",
@@ -66,6 +68,7 @@ public class MainActivity extends ActionBarActivity {
 			"10 Stops",
 	};
 
+	// Shutter and ND values which will be displayed to the user
 	private double shutterVal;
 	private double densityVal;
 
@@ -74,9 +77,11 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		// textViews for UI
 		final TextView textView = (TextView) findViewById(R.id.text_shutter_short);
 		final TextView textView1 = (TextView) findViewById(R.id.text_shutter_long);
 
+		// Picker object for UI selection of density
 		final NumberPicker ndPicker = (NumberPicker) findViewById(R.id.picker_nd);
 		ndPicker.setMaxValue(densitys.length - 1);
 		ndPicker.setMinValue(0);
@@ -84,13 +89,16 @@ public class MainActivity extends ActionBarActivity {
 		//ndPicker.setValue(1);
 		//ndPicker.setWrapSelectorWheel(false);
 
+		// Picker object for UI selection of density
 		final NumberPicker shutterPicker = (NumberPicker) findViewById(R.id.picker_shutter);
 		shutterPicker.setMaxValue(shutters.length - 1);
 		shutterPicker.setMinValue(0);
 		shutterPicker.setDisplayedValues(shutters);
 		//shutterPicker.setValue(1);
 		//shutterPicker.setWrapSelectorWheel(false);
-
+		
+	
+		/** Do things when value of pickers changed... **/
 		ndPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
 			@Override
 			public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -137,7 +145,8 @@ public class MainActivity extends ActionBarActivity {
 		double finalShutter = 0;
 
 		int densityValInt = (int)densityVal;
-
+		
+		// Do multipliers for different ND values, no cleaner way found...
 		switch (densityValInt) {
 			case 1:
 				finalShutter = shutterVal * 2;
@@ -170,6 +179,8 @@ public class MainActivity extends ActionBarActivity {
 				finalShutter = shutterVal * 1000;
 				break;
 		}
+		
+		/** Decimal to fraction conversion **/
 
 		finalShutter = Math.floor(finalShutter);
 
@@ -212,16 +223,19 @@ public class MainActivity extends ActionBarActivity {
 			}
 
 		}
+		
+		// Display results to user
 
 		textView.setText(finalShutterStr);
 		textView1.setText(finalShutterStrLong);
 
 	}
 
-	/** Gather usable data from arrays from inout methods **/
+	/** Gather usable data from arrays from input methods **/
 	public double parseArray(int valPos, String value, char valueType) {
 		double finalVal = 0;
 
+		// Messy method to determine what data needs to be parsed and how
 		if (valueType == 's') {
 			String splitChar = "[/]+";
 			String[] splitted = value.split(splitChar);
@@ -251,6 +265,7 @@ public class MainActivity extends ActionBarActivity {
 		return finalVal;
 	}
 
+	// open help activity from actionbar menu
 	public void openHelp() {
 		Intent intent = new Intent(this, HelpActivity.class);
 		startActivity(intent);
